@@ -26,6 +26,16 @@ class User extends Controller {
         \Renderer::Render('users/add', compact('pageTitle'));
     }
 
+    public function add() {
+        $pseudo = $_POST['pseudo'];
+        $password = password_hash($_POST['password'], PASSWORD_BCRYPT );
+        $email = $_POST['email'];
+
+        $etat = $this->model->add($pseudo, $password, $email);
+
+        \Renderer::Render('users/add', compact('etat'));
+    }
+
     public function delete() {
         if(empty($_GET['id'])) {
             die('Précise l\'ID le sang d\'tes morts');
