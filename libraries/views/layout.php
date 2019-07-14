@@ -1,3 +1,12 @@
+<?php
+
+if(isset($_GET['etat'])) {
+    var_dump('test');
+    \utils\utils::triggerToast($_GET['etat']);
+}
+
+?>
+
 <!doctype html>
 <html lang="fr">
 <head>

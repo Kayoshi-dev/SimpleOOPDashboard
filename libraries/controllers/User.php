@@ -33,15 +33,15 @@ class User extends Controller {
 
         $etat = $this->model->add($pseudo, $password, $email);
 
-        \Renderer::Render('users/add', compact('etat'));
+        \Http::redirect('index.php?controller=user&task=insert', $etat);
     }
 
     public function delete() {
         if(empty($_GET['id'])) {
-            die('Précise l\'ID le sang d\'tes morts');
+            die('Merci de préciser un ID valide :)');
         }
 
-        $id = $_GET['id'];
+        $id = (int)$_GET['id'];
 
         $etat = $this->model->delete($id);
 

@@ -17,7 +17,13 @@ abstract class Model
         $this->pdo = \Database::getPdo();
     }
 
-    public function show(?string $order = ""): array {
+    /**
+     * Renvoi un tableau contenant les infos de tout les utilisateurs
+     *
+     * @param string|null $order
+     * @return array
+     */
+    public function show(?string $order = null): array {
         $sql = "SELECT * FROM {$this->table}";
 
         if($order) {
@@ -35,10 +41,16 @@ abstract class Model
         return $data;
     }
 
-    public function findById(int $id) {
+    /**
+     * Renvoi un tableau contenant les informations d'un utilisateur en particulier
+     *
+     * @param int $id
+     * @return array
+     */
+    public function findById(int $id): array {
         try {
-            $result = $this->pdo->query("SELECT * FROM {$this->table} WHERE id = :id");
-            $result->bindParam(':id', $id);
+            $result = $this->pdo->query("SELECT * FROM {$this->table} WHERE id = :id", \PDO::FETCH_OBJ);
+            $result->bindParam(':id', $id, \PDO::PARAM_INT);
             $data = $result->fetchAll();
         } catch (PDOException $e) {
             echo $e->getMessage();

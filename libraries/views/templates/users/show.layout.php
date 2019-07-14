@@ -1,32 +1,5 @@
 <?php
-if(isset($_GET['etat'])) {
-    if($_GET['etat'] == 1) {
-        echo '
-            <div class="toast" style="position: absolute;top:50px;right:0;" data-autohide="true" data-delay="2000">
-                <div class="toast-header">
-                  <strong class="mr-auto text-success">Résultat</strong>
-                  <small class="text-muted">A l\'instant</small>
-                  <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
-                </div>
-                <div class="toast-body">
-                  L\'utilisateur a bien été supprimé
-                </div>
-              </div>
-        ';
-    } else {
-        echo '
-            <div class="toast" style="position: absolute;top:50px;right:0;" data-autohide="true" data-delay="1500">
-                <div class="toast-header">
-                  <strong class="mr-auto text-danger">Résultat</strong>
-                  <small class="text-muted">A l\'instant</small>
-                  <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
-                </div>
-                <div class="toast-body">
-                  Erreur lors de l\'execution de la requête
-                </div>
-              </div>';
-    }
-}
+
 ?>
 
 <h1>Liste des utilisateurs</h1>

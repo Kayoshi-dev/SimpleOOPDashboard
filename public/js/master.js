@@ -1,6 +1,7 @@
 $(document).ready(function() {
     $('#deleteModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
+        alert(button);
         var idUser = button.data('iduser');
         var modal = $(this);
         modal.find('#deleteSection').empty();
