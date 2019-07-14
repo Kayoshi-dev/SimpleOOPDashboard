@@ -47,4 +47,9 @@ class User extends Controller {
 
         \Http::redirect('index.php?controller=user&task=show', $etat);
     }
+
+    public function edit() {
+        $pageTitle = 'Edition de membres';
+       \Renderer::Render('users/edituser', compact('pageTitle'));
+    }
 }

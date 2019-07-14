@@ -104,3 +104,11 @@ body {
     height: 25px;
     padding: 2px;
 }
+
+.image-upload>input {
+    display: none;
+}
+
+.image-upload img {
+    cursor: pointer;
+}

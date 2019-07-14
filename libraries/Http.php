@@ -2,7 +2,11 @@
 
 class Http {
     public static function redirect(string $path, ?string $option = null) {
-        header('Location: ' . $path . '&etat=' . $etat = $option);
+        if($option != null) {
+            header('Location: ' . $path . '&etat=' . $etat = $option);
+        } else {
+            header('Location: ' . $path);
+        }
         die();
     }
 }

@@ -30,9 +30,9 @@
                     <button data-iduser="<?= $user->id ?>" href="index.php?controller=user&task=delete&id=<?= $user->id ?>" id="deleteButton" data-toggle="modal" data-target="#deleteModal" class="px-0 py-0 mr-2 btn btn-sq-xs">
                         <i class="fa fa-times" style="color: red;"></i>
                     </button>
-                    <button class="px-0 py-0 btn btn-sq-xs">
+                    <a href="index.php?controller=user&task=edit" class="px-0 py-0 btn btn-sq-xs">
                         <i class="fa fa-pencil" style="color: darkorange"></i>
-                    </button>
+                    </a>
                 </td>
             </tr>
         </tbody>
