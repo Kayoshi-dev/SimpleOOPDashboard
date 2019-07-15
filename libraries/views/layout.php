@@ -1,9 +1,6 @@
 <?php
 
-if(isset($_GET['etat'])) {
-    var_dump('test');
-    \utils\utils::triggerToast($_GET['etat']);
-}
+
 
 ?>
 
@@ -93,8 +90,18 @@ if(isset($_GET['etat'])) {
             </div>
         </div>
 
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <?= $pageContent ?>
+        <div class="justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+            <?php
+
+            // Si la variable $_GET['etat'] est définie alors on affiche un toast.
+            if(isset($_GET['etat'])) {
+                \utils\utils::triggerToast($_GET['etat']);
+            }
+
+            echo $pageContent;
+
+            ?>
 
     </main>
 

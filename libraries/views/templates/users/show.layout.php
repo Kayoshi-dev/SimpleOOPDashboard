@@ -1,8 +1,16 @@
-<?php
-
-?>
-
-<h1>Liste des utilisateurs</h1>
+<div class="row">
+    <div class="col-md-4">
+        <h1>Liste des utilisateurs</h1>
+    </div>
+    <div class="offset-md-2 col-md-4">
+        <div class="form-group row align-items-center">
+            <h5 class="col-md-6">Chercher un membre :</h5>
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="searchMember">
+            </div>
+        </div>
+    </div>
+</div>
 
 </div>
 
@@ -17,26 +25,26 @@
             <th scope="col">Actions</th>
         </tr>
     </thead>
+    <tbody id="memberTable">
     <?php
     foreach ($data as $user) : ?>
-        <tbody>
-            <tr>
-                <th scope="col" id="idUser"><?= $user->id ?></th>
-                <td><?= $user->pseudo ?></td>
-                <td><?= $user->pass ?></td>
-                <td><?= $user->email ?></td>
-                <td><?= $user->date_inscription ?></td>
-                <td>
-                    <button data-iduser="<?= $user->id ?>" href="index.php?controller=user&task=delete&id=<?= $user->id ?>" id="deleteButton" data-toggle="modal" data-target="#deleteModal" class="px-0 py-0 mr-2 btn btn-sq-xs">
-                        <i class="fa fa-times" style="color: red;"></i>
-                    </button>
-                    <a href="index.php?controller=user&task=edit" class="px-0 py-0 btn btn-sq-xs">
-                        <i class="fa fa-pencil" style="color: darkorange"></i>
-                    </a>
-                </td>
-            </tr>
-        </tbody>
+        <tr>
+            <th scope="col" id="idUser"><?= $user->id ?></th>
+            <td><?= $user->pseudo ?></td>
+            <td><?= $user->pass ?></td>
+            <td><?= $user->email ?></td>
+            <td><?= $user->date_inscription ?></td>
+            <td>
+                <button data-iduser="<?= $user->id ?>" id="deleteButton" data-toggle="modal" data-target="#deleteModal" class="px-0 py-0 mr-2 btn btn-sq-xs">
+                    <i class="fa fa-times" style="color: red;"></i>
+                </button>
+                <a href="index.php?controller=user&task=edit&id=<?= $user->id ?>" class="px-0 py-0 btn btn-sq-xs">
+                    <i class="fa fa-pencil" style="color: darkorange"></i>
+                </a>
+            </td>
+        </tr>
     <?php endforeach; ?>
+    </tbody>
 </table>
 
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">

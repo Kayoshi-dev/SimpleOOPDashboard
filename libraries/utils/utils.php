@@ -30,4 +30,24 @@ class utils
             </div>
         </div>';
     }
+
+    public static function sendMail(string $to, string $subject, string $message): void {
+        $body = "
+        <html>
+        <head>
+        <title>$subject</title>
+        </head>
+        <body>
+        <p>$message</p>
+        </body>
+        </html>
+        ";
+
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+        $headers .= 'From: <maxime@SimpleDashboard.com>' . "\r\n";
+
+        mail($to, $subject, $body, $headers);
+    }
 }

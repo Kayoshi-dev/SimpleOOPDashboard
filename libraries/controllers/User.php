@@ -2,6 +2,8 @@
 
 namespace Controllers;
 
+use utils\utils;
+
 class User extends Controller {
 
     protected $modelName = \Models\User::class;
@@ -33,6 +35,8 @@ class User extends Controller {
 
         $etat = $this->model->add($pseudo, $password, $email);
 
+        utils::sendMail($email, 'Inscription au site de Maxime', 'Bienvenue sur le site internet');
+
         \Http::redirect('index.php?controller=user&task=insert', $etat);
     }
 
@@ -49,7 +53,15 @@ class User extends Controller {
     }
 
     public function edit() {
+        if(empty($_GET['id'])) {
+            \Http::redirect('index.php?controller=user&task=show');
+        }
         $pageTitle = 'Edition de membres';
-       \Renderer::Render('users/edituser', compact('pageTitle'));
+
+        $id = (int)$_GET['id'];
+
+        $data = $this->model->findById($id);
+
+       \Renderer::Render('users/edituser', compact('pageTitle', 'data'));
     }
 }

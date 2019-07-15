@@ -25,19 +25,11 @@ abstract class Model
      */
     public function show(?string $order = null): array {
         $sql = "SELECT * FROM {$this->table}";
-
         if($order) {
             $sql .= " ORDER BY " . $order;
         }
-
         $result = $this->pdo->query($sql, \PDO::FETCH_OBJ);
-//        foreach ($result as $resultat) {
-//            echo json_encode($resultat, JSON_PRETTY_PRINT) . '<br>';
-//        }
-
         $data = $result->fetchAll();
-
-//        var_dump($data);
         return $data;
     }
 
@@ -47,18 +39,25 @@ abstract class Model
      * @param int $id
      * @return array
      */
-    public function findById(int $id): array {
+    public function findById(int $id) {
         try {
-            $result = $this->pdo->query("SELECT * FROM {$this->table} WHERE id = :id", \PDO::FETCH_OBJ);
-            $result->bindParam(':id', $id, \PDO::PARAM_INT);
-            $data = $result->fetchAll();
+            $sql = "SELECT * FROM {$this->table} WHERE id = :id";
+            $req = $this->pdo->prepare($sql);
+            $req->bindValue(':id', $id, \PDO::PARAM_INT);
+            $req->execute();
+            $data = $req->fetch(\PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-
         return $data;
     }
 
+    /**
+     * Supprime l'utilisateur possédant l'ID correspondant
+     *
+     * @param int $id
+     * @return bool
+     */
     public function delete(int $id) {
         try {
             $req = $this->pdo->prepare("DELETE FROM {$this->table} WHERE id = :id");
