@@ -25,12 +25,22 @@ class User extends Model {
         }
 
         try {
-            $req = $this->pdo->prepare('INSERT INTO membres(pseudo, pass, email, date_inscription) VALUES (:prenom, :pass, :email, CURDATE())');
-            $req->execute(array(':prenom' => $pseudo, ':pass' => $pass, ':email' => $email));
+            $req = $this->pdo->prepare('INSERT INTO membres(pseudo, pass, email, date_inscription) VALUES (:pseudo, :pass, :email, CURDATE())');
+            $req->execute(array(':pseudo' => $pseudo, ':pass' => $pass, ':email' => $email));
             return $etat = true;
         } catch(PDOException $e) {
             echo $e->getMessage();
             return $etat = false;
+        }
+    }
+
+    public function update(string $pseudo, string $pass, string $email, int $id) {
+        try {
+            $req = $this->pdo->prepare("UPDATE {$this->table} SET pseudo = :pseudo, pass = :pass, email = :email WHERE id = :id");
+            $req->execute(array(':id' => $id, ':pseudo' => $pseudo, ':pass' => $pass, ':email' => $email));
+            return $etat = true;
+        } catch(PDOException $e) {
+            return $e->getMessage();
         }
     }
 }

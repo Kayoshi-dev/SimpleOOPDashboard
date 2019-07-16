@@ -64,4 +64,13 @@ class User extends Controller {
 
        \Renderer::Render('users/edituser', compact('pageTitle', 'data'));
     }
+
+    public function update() {
+        $id = (int)$_GET['id'];
+        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+
+        $etat = $this->model->update($_POST['pseudo'], $password, $_POST['email'], $id);
+
+        \Http::redirect('index.php?controller=user&task=show', $etat);
+    }
 }
