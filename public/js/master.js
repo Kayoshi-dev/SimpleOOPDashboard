@@ -29,4 +29,21 @@ $(document).ready(function() {
             $("#main").addClass("col-md-9 ml-sm-auto col-lg-10").removeClass("col-md-12 col-lg-12");
         }
     });
+
+    function readURL(input) {
+        if(input.files && input.files[0]) {
+            let reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#previewImg').attr('src', e.target.result).hide().fadeIn(500);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $('#file-input').change(function() {
+        readURL(this);
+    });
 });
+

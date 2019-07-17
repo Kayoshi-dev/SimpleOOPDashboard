@@ -10,10 +10,10 @@ if(!isset($_GET['id'])) {
 
 </div>
 
-<form method="post" action="index.php?controller=user&task=update&id=<?= $_GET['id'] ?>">
+<form method="post" action="index.php?controller=user&task=update&id=<?= $_GET['id'] ?>" enctype="multipart/form-data">
     <div class="image-upload text-center mb-2">
         <label for="file-input">
-            <img src="public/img/default.jpg" alt="defaultProfilePic" height="100" width="100" class="rounded-circle">
+            <img src="public/img/default.jpg" alt="defaultProfilePic" height="100" width="100" class="rounded-circle" id="previewImg">
             <!--<span class="text-content">Cliquer pour changer de photo de profil</span>-->
         </label>
         <input id="file-input" type="file">

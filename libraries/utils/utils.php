@@ -35,10 +35,10 @@ class utils
         $body = "
         <html>
         <head>
-        <title>$subject</title>
+            <title>$subject</title>
         </head>
         <body>
-        <p>$message</p>
+            <p>$message</p>
         </body>
         </html>
         ";

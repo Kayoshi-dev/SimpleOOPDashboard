@@ -16,14 +16,14 @@
 
 <table class="table table-hover">
     <thead class="thead-dark">
-        <tr>
-            <th scope="col">id</th>
-            <th scope="col">Pseudo</th>
-            <th scope="col">Pass</th>
-            <th scope="col">Email</th>
-            <th scope="col">Date_Inscription</th>
-            <th scope="col">Actions</th>
-        </tr>
+    <tr>
+        <th scope="col">id</th>
+        <th scope="col">Pseudo</th>
+        <th scope="col">Pass</th>
+        <th scope="col">Email</th>
+        <th scope="col">Date_Inscription</th>
+        <th scope="col">Actions</th>
+    </tr>
     </thead>
     <tbody id="memberTable">
     <?php
