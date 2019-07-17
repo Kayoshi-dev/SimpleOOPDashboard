@@ -20,10 +20,10 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <?php
     if(!isset($_GET['task'])) {
-        echo '        
-        <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
-        <script src="public/js/chartHome.js"></script>
-        ';
+        //echo '
+        //<script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+        //<script src="public/js/chartHome.js"></script>
+        //';
     }
     ?>
     <!-- JS Jquery -->
@@ -40,7 +40,12 @@
 <body>
 
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Tableau de bord</a>
+        <div class="navbar-brand col-sm-3 col-md-2 mr-0">
+            <div class="row">
+                <a class="col-md-9 link-unstyled mr-4" href="#">Tableau de bord </a>
+                <img src="public/img/hamburger-icon.svg" class="col-mg-2 menu-icon" id="menu-icon" style="color: white;" width="24" height="24">
+            </div>
+        </div>
         <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
@@ -49,8 +54,8 @@
         </ul>
     </nav>
 
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <div class="container-fluid">
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" id="main">
+        <div class="container-fluid" id="container-sidebar">
             <div class="row">
                 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                     <div class="sidebar-sticky">

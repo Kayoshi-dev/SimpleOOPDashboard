@@ -9,10 +9,24 @@ $(document).ready(function() {
 
     $('.toast').toast('show');
 
+    // Function to find a member in the table
     $("#searchMember").on("keyup", function() {
         let value = $(this).val().toLowerCase();
         $("#memberTable tr").filter(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
+    });
+
+
+    $('body').on('click','#menu-icon',function(){
+        // if the sidebar is visible then
+        if($("#container-sidebar").is(":visible")) {
+            $("#container-sidebar").hide();
+            $("#main").addClass("col-md-12 ml-sm-auto col-lg-12").removeClass("col-md-9 col-lg-10");
+
+        } else {
+            $("#container-sidebar").show();
+            $("#main").addClass("col-md-9 ml-sm-auto col-lg-10").removeClass("col-md-12 col-lg-12");
+        }
     });
 });

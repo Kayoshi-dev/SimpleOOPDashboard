@@ -129,3 +129,16 @@ body {
     filter: grayscale(100%);
     transition-duration: 0.5s;
 }
+
+.link-unstyled {
+    text-decoration: none;
+    color: white;
+}
+
+.link-unstyled:hover {
+    color: white;
+}
+
+.menu-icon:hover{
+    cursor: pointer;
+}

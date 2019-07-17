@@ -6,7 +6,7 @@
         <div class="form-group row align-items-center">
             <h5 class="col-md-6">Chercher un membre :</h5>
             <div class="col-md-6">
-                <input type="text" class="form-control" id="searchMember">
+                <input type="text" class="form-control" id="searchMember" placeholder="Write his name">
             </div>
         </div>
     </div>
