@@ -34,10 +34,10 @@ class User extends Model {
         }
     }
 
-    public function update(string $pseudo, string $pass, string $email, int $id) {
+    public function update(string $pseudo, string $pass, string $email, int $id, ?string $profilePic = '') {
         try {
-            $req = $this->pdo->prepare("UPDATE {$this->table} SET pseudo = :pseudo, pass = :pass, email = :email WHERE id = :id");
-            $req->execute(array(':id' => $id, ':pseudo' => $pseudo, ':pass' => $pass, ':email' => $email));
+            $req = $this->pdo->prepare("UPDATE {$this->table} SET pseudo = :pseudo, pass = :pass, email = :email, profilepic = :profilePic WHERE id = :id");
+            $req->execute(array(':id' => $id, ':pseudo' => $pseudo, ':pass' => $pass, ':email' => $email, ':profilePic' => $profilePic));
             return $etat = true;
         } catch(PDOException $e) {
             return $e->getMessage();
