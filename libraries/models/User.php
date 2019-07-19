@@ -34,6 +34,14 @@ class User extends Model {
         }
     }
 
+    /**
+     * @param string $pseudo
+     * @param string $pass
+     * @param string $email
+     * @param int $id
+     * @param string|null $profilePic
+     * @return bool|string
+     */
     public function update(string $pseudo, string $pass, string $email, int $id, ?string $profilePic = '') {
         try {
             $req = $this->pdo->prepare("UPDATE {$this->table} SET pseudo = :pseudo, pass = :pass, email = :email, profilepic = :profilePic WHERE id = :id");

@@ -12,6 +12,9 @@ abstract class Model
     protected $pdo;
     protected $table;
 
+    /**
+     * Model constructor.
+     */
     public function __construct()
     {
         $this->pdo = \Database::getPdo();

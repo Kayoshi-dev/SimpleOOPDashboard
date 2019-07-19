@@ -30,7 +30,10 @@
     foreach ($data as $user) : ?>
         <tr>
             <th scope="col" id="idUser"><?= $user->id ?></th>
-            <td><?= $user->pseudo ?></td>
+            <td>
+                <?= $user->pseudo ?>
+                <img src="public/upload/<?php if($user->profilepic != null){ echo $user->profilepic; } else { echo 'default.jpg'; } ?>" alt="defaultProfilePic" height="25" width="25" class="rounded-circle" id="previewImg">
+            </td>
             <td><?= $user->pass ?></td>
             <td><?= $user->email ?></td>
             <td><?= $user->date_inscription ?></td>
