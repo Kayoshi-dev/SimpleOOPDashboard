@@ -42,11 +42,18 @@ class User extends Model {
      * @param string|null $profilePic
      * @return bool|string
      */
-    public function update(string $pseudo, string $pass, string $email, int $id, ?string $profilePic = '') {
+    public function update(string $pseudo, string $pass, string $email, int $id, ?string $profilePic = null) {
         try {
-            $req = $this->pdo->prepare("UPDATE {$this->table} SET pseudo = :pseudo, pass = :pass, email = :email, profilepic = :profilePic WHERE id = :id");
-            $req->execute(array(':id' => $id, ':pseudo' => $pseudo, ':pass' => $pass, ':email' => $email, ':profilePic' => $profilePic));
-            return $etat = true;
+            if($profilePic != null) {
+                $req = $this->pdo->prepare("UPDATE {$this->table} SET pseudo = :pseudo, pass = :pass, email = :email, profilepic = :profilePic WHERE id = :id");
+                $req->execute(array(':id' => $id, ':pseudo' => $pseudo, ':pass' => $pass, ':email' => $email, ':profilePic' => $profilePic));
+                return $etat = true;
+            } else {
+                $req = $this->pdo->prepare("UPDATE {$this->table} SET pseudo = :pseudo, pass = :pass, email = :email WHERE id = :id");
+                $req->execute(array(':id' => $id, ':pseudo' => $pseudo, ':pass' => $pass, ':email' => $email));
+                return $etat = true;
+            }
+
         } catch(PDOException $e) {
             return $e->getMessage();
         }

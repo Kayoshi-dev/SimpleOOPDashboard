@@ -69,7 +69,9 @@ class User extends Controller {
         $id = (int)$_GET['id'];
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-        if(isset($_FILES['profilePic'])) {
+        var_dump($_FILES['profilePic']);
+
+        if(is_uploaded_file($_FILES['profilePic']['tmp_name'])) {
             if($_FILES['profilePic']['tmp_name'] != 'default.jpg') {
                 $extensions = array('jpg', 'jpeg', 'gif', 'png');
 
@@ -79,13 +81,17 @@ class User extends Controller {
                 if(in_array($file_ext, $extensions)) {
                     if($_FILES['profilePic']['error'] == 0) {
                         $picName = $id . '.' . $file_ext;
-                        move_uploaded_file($_FILES['profilePic']['tmp_name'], 'public/upload/profilepic' . $picName);
+                        move_uploaded_file($_FILES['profilePic']['tmp_name'], 'public/upload/profilepic/' . $picName);
                         $etat = $this->model->update($_POST['pseudo'], $password, $_POST['email'], $id, $picName);
                     } else {
                         $etat = false;
                     }
+                } else {
+                    $etat = false;
                 }
             }
+        } else {
+            $etat = $this->model->update($_POST['pseudo'], $password, $_POST['email'], $id);
         }
 
         \Http::redirect('index.php?controller=user&task=show', $etat);

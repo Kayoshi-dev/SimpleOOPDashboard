@@ -6,7 +6,7 @@ namespace utils;
 
 class utils
 {
-    public static function triggerToast(string $etat, ?string $message = '' ) {
+    public static function triggerToast(string $etat, ?string $message = '') {
         if($etat == 1) {
             $class = 'text-success';
             if($message) {
