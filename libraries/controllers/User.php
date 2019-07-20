@@ -79,7 +79,7 @@ class User extends Controller {
                 if(in_array($file_ext, $extensions)) {
                     if($_FILES['profilePic']['error'] == 0) {
                         $picName = $id . '.' . $file_ext;
-                        move_uploaded_file($_FILES['profilePic']['tmp_name'], 'public/upload/' . $picName);
+                        move_uploaded_file($_FILES['profilePic']['tmp_name'], 'public/upload/profilepic' . $picName);
                         $etat = $this->model->update($_POST['pseudo'], $password, $_POST['email'], $id, $picName);
                     } else {
                         $etat = false;

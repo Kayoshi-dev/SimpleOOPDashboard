@@ -17,9 +17,9 @@ if(!isset($_GET['id'])) {
 </div>
 
 <form method="POST" action="index.php?controller=user&task=update&id=<?= $_GET['id'] ?>" enctype="multipart/form-data">
-    <div class="image-upload text-center mb-2">
+    <div class="image-upload mb-2 d-flex justify-content-center align-items-center" style="min-height: 200px; background-size: cover; background-image: url(public/upload/bannerpic/<?= 'default.jpg' ?>);">
         <label for="file-input">
-            <img src="public/upload/<?= $picName ?>" alt="defaultProfilePic" height="100" width="100" class="rounded-circle" id="previewImg">
+            <img src="public/upload/profilepic/<?= $picName ?>" alt="defaultProfilePic" height="100" width="100" class="rounded-circle" id="previewImg">
             <!--<span class="text-content">Cliquer pour changer de photo de profil</span>-->
         </label>
         <input id="file-input" type="file" name="profilePic">

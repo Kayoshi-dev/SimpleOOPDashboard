@@ -142,3 +142,7 @@ body {
 .menu-icon:hover{
     cursor: pointer;
 }
+
+.image-upload {
+    cursor: pointer;
+}
