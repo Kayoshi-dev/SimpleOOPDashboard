@@ -43,29 +43,29 @@ class User extends Model {
      * @param string|null $bannerPic
      * @return bool|string
      */
-    public function update(string $pseudo, string $pass, string $email, int $id, ?string $profilePic = null, ?string $bannerPic = null) {
+    public function update(string $pseudo, string $pass, string $email, int $id, ?string $profilePic = null, ?string $bannerPic = null)
+    {
         try {
             $sql = "UPDATE {$this->table} SET pseudo = :pseudo, pass = :pass, email = :email";
+            $val = array(':id' => $id, ':pseudo' => $pseudo, ':pass' => $pass, ':email' => $email);
 
-            if($profilePic != null) {
+            if (!empty($profilePic)) {
                 $sql .= ", profilepic = :profilePic";
-                $req = $this->pdo->prepare($sql);
-                $exec = $req->execute(array(':id' => $id, ':pseudo' => $pseudo, ':pass' => $pass, ':email' => $email, ':profilePic' => $profilePic));
-                return $etat = true;
+                $val = array(':id' => $id, ':pseudo' => $pseudo, ':pass' => $pass, ':email' => $email, ':profilePic' => $profilePic);
             }
 
-            if($bannerPic != null) {
+            if (!empty($bannerPic)) {
                 $sql .= ", bannerpic = :bannerPic";
-                $req = $this->pdo->prepare($sql);
-                $exec = $req->execute(array(':id' => $id, ':pseudo' => $pseudo, ':pass' => $pass, ':email' => $email, ':bannerPic', $bannerPic));
-                return $etat = true;
+                $val = array(':id' => $id, ':pseudo' => $pseudo, ':pass' => $pass, ':email' => $email, ':bannerPic' => $bannerPic);
             }
 
+            $sql .= $where = " WHERE id = :id";
+            $req = $this->pdo->prepare($sql);
+            $req->execute($val);
 
+            return true;
 
-
-
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             return $e->getMessage();
         }
     }
