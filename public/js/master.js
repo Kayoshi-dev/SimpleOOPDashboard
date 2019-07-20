@@ -30,20 +30,33 @@ $(document).ready(function() {
         }
     });
 
-    function readURL(input) {
+    function readURL(input, picId) {
         if(input.files && input.files[0]) {
             let reader = new FileReader();
 
             reader.onload = function(e) {
-                $('#previewImg').attr('src', e.target.result).hide().fadeIn(500);
+                $('#' + picId).attr('src', e.target.result).hide().fadeIn(500);
             };
 
             reader.readAsDataURL(input.files[0]);
         }
     }
 
-    $('#file-input').change(function() {
-        readURL(this);
+    // Met à jour la photo de la bannière dès qu'un fichier de type image lui est transmis
+    $('#banner-input').change(function() {
+        readURL(this, 'bannerPicture');
     });
+
+    $('#file-input').change(function() {
+        readURL(this, 'previewImg');
+    });
+
+    // let labelID;
+    // $('#bannerPicture').click(function() {
+    //     alert('test');
+    //     e.stopPropagation();
+    //     labelID = $(this).attr('for');
+    //     $('#'+labelID).trigger('click');
+    // });
 });
 

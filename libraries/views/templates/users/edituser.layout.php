@@ -8,7 +8,15 @@ if(!isset($_GET['id'])) {
     } else {
         $picName = 'default.jpg';
     }
+
+    if($data->bannerpic != null) {
+        $bannerName = $data->bannerpic;
+    } else {
+        $bannerName = 'default.jpg';
+    }
 }
+
+//background-size: cover; background-image: url(public/upload/bannerpic/<?= 'default.jpg' ?>);
 
 ?>
 
@@ -17,12 +25,16 @@ if(!isset($_GET['id'])) {
 </div>
 
 <form method="POST" action="index.php?controller=user&task=update&id=<?= $_GET['id'] ?>" enctype="multipart/form-data">
-    <div class="image-upload mb-2 d-flex justify-content-center align-items-center" style="min-height: 200px; background-size: cover; background-image: url(public/upload/bannerpic/<?= 'default.jpg' ?>);">
-        <label for="file-input">
-            <img src="public/upload/profilepic/<?= $picName ?>" alt="defaultProfilePic" height="100" width="100" class="rounded-circle" id="previewImg">
-            <!--<span class="text-content">Cliquer pour changer de photo de profil</span>-->
+    <div class="image-upload mb-2 d-flex justify-content-center align-items-center" id="test" style="min-height: 300px;">
+        <label for="banner-input" id="bannerLabel">
+            <img src="public/upload/bannerpic/<?= $bannerName ?>" alt="defaultBannerPic" class="img-fluid px-4" id="bannerPicture">
+        </label>
+        <input id="banner-input" type="file" name="bannerPic">
+        <label for="file-input" id="profilePicLabel">
+            <img src="public/upload/profilepic/<?= $picName ?>" alt="defaultProfilePic" height="150" width="150" class="rounded-circle" id="previewImg">
         </label>
         <input id="file-input" type="file" name="profilePic">
+
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">

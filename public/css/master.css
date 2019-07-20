@@ -109,23 +109,27 @@ body {
     display: none;
 }
 
+.image-upload #bannerLabel {
+    display: contents;
+}
+
 .image-upload img {
     cursor: pointer;
 }
 
-.image-upload img:hover::before {
-    content: 'Cliquer pour changer';
-    position: absolute;
-    display: block;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
+.image-upload #profilePicLabel {
+    z-index: 5;
 }
 
-.image-upload img:hover {
+.image-upload #bannerPicture {
+    position: absolute;
+    z-index: 1;
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.image-upload #previewImg:hover {
     filter: grayscale(100%);
     transition-duration: 0.5s;
 }
