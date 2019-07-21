@@ -16,8 +16,6 @@ if(!isset($_GET['id'])) {
     }
 }
 
-//background-size: cover; background-image: url(public/upload/bannerpic/<?= 'default.jpg' ?>);
-
 ?>
 
 <h1>Modifier un utilisateur</h1>

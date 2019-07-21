@@ -59,6 +59,11 @@ class User extends Model {
                 $val = array(':id' => $id, ':pseudo' => $pseudo, ':pass' => $pass, ':email' => $email, ':bannerPic' => $bannerPic);
             }
 
+            if (!empty($profilePic && !empty($bannerPic))) {
+                $sql .= ", profilepic = :profilePic, bannerpic = :bannerPic";
+                $val = $val = array(':id' => $id, ':pseudo' => $pseudo, ':pass' => $pass, ':email' => $email, ':profilePic' => $profilePic, ':bannerPic' => $bannerPic);
+            }
+
             $sql .= $where = " WHERE id = :id";
             $req = $this->pdo->prepare($sql);
             $req->execute($val);

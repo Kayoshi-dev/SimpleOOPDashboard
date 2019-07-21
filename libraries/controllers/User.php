@@ -70,18 +70,18 @@ class User extends Controller {
         $id = (int)$_GET['id'];
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-        if (is_uploaded_file($_FILES['profilePic']['tmp_name'])) {
+        if (is_uploaded_file($_FILES['profilePic']['tmp_name']) && empty($_FILES['bannerPic'])) {
             if ($_FILES['profilePic']['tmp_name'] != 'default.jpg') {
                 $extensions = array('jpg', 'jpeg', 'gif', 'png');
 
-                $file_ext = explode('.', $_FILES['profilePic']['name']);
-                $file_ext = end($file_ext);
+                $profilePicExt = explode('.', $_FILES['profilePic']['name']);
+                $profilePicExt = end($profilePicExt);
 
-                if (in_array(strtolower($file_ext), $extensions)) {
+                if (in_array(strtolower($profilePicExt), $extensions)) {
                     if ($_FILES['profilePic']['error'] == 0) {
-                        $picName = $id . '.' . $file_ext;
-                        move_uploaded_file($_FILES['profilePic']['tmp_name'], 'public/upload/profilepic/' . strtolower($picName));
-                        $etat = $this->model->update($_POST['pseudo'], $password, $_POST['email'], $id, $picName);
+                        $profilePicName = $id . '.' . $profilePicExt;
+                        move_uploaded_file($_FILES['profilePic']['tmp_name'], 'public/upload/profilepic/' . strtolower($profilePicName));
+                        $etat = $this->model->update($_POST['pseudo'], $password, $_POST['email'], $id, $profilePicName);
                     } else {
                         $etat = false;
                     }
@@ -89,16 +89,16 @@ class User extends Controller {
                     $etat = false;
                 }
             }
-        } else if (is_uploaded_file($_FILES['bannerPic']['tmp_name'])) {
+        } else if (is_uploaded_file($_FILES['bannerPic']['tmp_name']) && empty($_FILES['profilePic'])) {
             if ($_FILES['bannerPic']['tmp_name'] != 'default.jpg') {
                 $extensions = array('jpg', 'jpeg', 'gif', 'png');
 
-                $file_ext = explode('.', $_FILES['bannerPic']['name']);
-                $file_ext = end($file_ext);
+                $profilePicExt = explode('.', $_FILES['bannerPic']['name']);
+                $profilePicExt = end($profilePicExt);
 
-                if (in_array(strtolower($file_ext), $extensions)) {
+                if (in_array(strtolower($profilePicExt), $extensions)) {
                     if ($_FILES['bannerPic']['error'] == 0) {
-                        $bannerPic = $id . '.' . $file_ext;
+                        $bannerPic = $id . '.' . $profilePicExt;
                         move_uploaded_file($_FILES['bannerPic']['tmp_name'], 'public/upload/bannerpic/' . strtolower($bannerPic));
                         $etat = $this->model->update($_POST['pseudo'], $password, $_POST['email'], $id, '', $bannerPic);
                     } else {
@@ -109,7 +109,30 @@ class User extends Controller {
                 }
             }
         } else if (is_uploaded_file($_FILES['profilePic']['tmp_name']) && is_uploaded_file($_FILES['bannerPic']['tmp_name'])) {
-            //TODO User can't upload a Profile Picture and a Banner in the same time
+            //Really bad code, should improve it.
+            if ($_FILES['profilePic']['tmp_name'] != 'default.jpg' && $_FILES['bannerPic']['tmp_name'] != 'default.jpg') {
+                $extensions = array('jpg', 'jpeg', 'gif', 'png');
+
+                $profilePicExt = explode('.', $_FILES['profilePic']['name']);
+                $profilePicExt = end($profilePicExt);
+
+                $bannerPicExt = explode('.', $_FILES['bannerPic']['name']);
+                $bannerPicExt = end($bannerPicExt);
+
+                if (in_array(strtolower($profilePicExt), $extensions) && in_array(strtolower($bannerPicExt), $extensions)) {
+                    if ($_FILES['profilePic']['error'] == 0 && $_FILES['bannerPic']['error'] == 0) {
+                        $profilePicName = $id . '.' . $profilePicExt;
+                        $bannerPicName = $id . '.' . $bannerPicExt;
+                        move_uploaded_file($_FILES['profilePic']['tmp_name'], 'public/upload/profilepic/' . strtolower($profilePicName));
+                        move_uploaded_file($_FILES['bannerPic']['tmp_name'], 'public/upload/bannerpic/' . strtolower($bannerPicName));
+                        $etat = $this->model->update($_POST['pseudo'], $password, $_POST['email'], $id, $profilePicName, $bannerPicName);
+                    } else {
+                        $etat = false;
+                    }
+                } else {
+                    $etat = false;
+                }
+            }
         } else {
             $etat = $this->model->update($_POST['pseudo'], $password, $_POST['email'], $id);
         }
