@@ -35,9 +35,9 @@ class User extends Controller {
 
         $etat = $this->model->add($pseudo, $password, $email);
 
-        utils::sendMail($email, 'Inscription au site de Maxime', 'Bienvenue sur le site internet');
+        utils::sendMail($email, 'Inscription au site de Maxime', 'Veuillez cliquer sur le lien ci-dessous pour valider votre compte');
 
-        \Http::redirect('index.php?controller=user&task=insert', $etat);
+        \Http::redirect('index.php?task=insert', $etat);
     }
 
     public function delete() {
@@ -49,12 +49,12 @@ class User extends Controller {
 
         $etat = $this->model->delete($id);
 
-        \Http::redirect('index.php?controller=user&task=show', $etat);
+        \Http::redirect('index.php?task=show', $etat);
     }
 
     public function edit() {
         if(empty($_GET['id'])) {
-            \Http::redirect('index.php?controller=user&task=show');
+            \Http::redirect('index.php?task=show');
         }
         $pageTitle = 'Edition de membres';
 
@@ -137,6 +137,6 @@ class User extends Controller {
             $etat = $this->model->update($_POST['pseudo'], $password, $_POST['email'], $id);
         }
 
-        \Http::redirect('index.php?controller=user&task=show', $etat);
+        \Http::redirect('index.php?task=show', $etat);
     }
 }

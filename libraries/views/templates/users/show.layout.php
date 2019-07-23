@@ -41,7 +41,7 @@
                 <button data-iduser="<?= $user->id ?>" id="deleteButton" data-toggle="modal" data-target="#deleteModal" class="px-0 py-0 mr-2 btn btn-sq-xs">
                     <i class="fa fa-times" style="color: red;"></i>
                 </button>
-                <a href="index.php?controller=user&task=edit&id=<?= $user->id ?>" class="px-0 py-0 btn btn-sq-xs">
+                <a href="index.php?task=edit&id=<?= $user->id ?>" class="px-0 py-0 btn btn-sq-xs">
                     <i class="fa fa-pencil" style="color: darkorange"></i>
                 </a>
             </td>

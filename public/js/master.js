@@ -4,7 +4,7 @@ $(document).ready(function() {
         let idUser = button.data('iduser');
         let modal = $(this);
         modal.find('#deleteSection').empty();
-        modal.find('#deleteSection').append('<a href="index.php?controller=user&task=delete&id=' + idUser + '" class="btn btn-danger" id="buttonDelete">Supprimer</a>');
+        modal.find('#deleteSection').append('<a href="index.php?task=delete&id=' + idUser + '" class="btn btn-danger" id="buttonDelete">Supprimer</a>');
     });
 
     $('.toast').toast('show');

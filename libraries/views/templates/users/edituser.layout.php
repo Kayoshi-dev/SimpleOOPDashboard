@@ -22,7 +22,7 @@ if(!isset($_GET['id'])) {
 
 </div>
 
-<form method="POST" action="index.php?controller=user&task=update&id=<?= $_GET['id'] ?>" enctype="multipart/form-data">
+<form method="POST" action="index.php?task=update&id=<?= $_GET['id'] ?>" enctype="multipart/form-data">
     <div class="image-upload mb-2 d-flex justify-content-center align-items-center" id="test" style="min-height: 300px;">
         <label for="banner-input" id="bannerLabel">
             <img src="public/upload/bannerpic/<?= $bannerName ?>" alt="defaultBannerPic" class="img-fluid px-4" id="bannerPicture">

@@ -2,7 +2,7 @@
 
 </div>
 
-<form method="post" action="index.php?controller=user&task=add">
+<form method="post" action="index.php?task=add">
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputEmail4">Pseudo</label>

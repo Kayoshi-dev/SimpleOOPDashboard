@@ -33,7 +33,7 @@ class utils
 
     public static function sendMail(string $to, string $subject, string $message): void {
         $body = "
-        <html>
+        <html lang='fr'>
         <head>
             <title>$subject</title>
         </head>

@@ -2,4 +2,6 @@
 
 </div>
 
-<canvas id="myChart" width="400" height="400"></canvas>
+<div class="row">
+    <a href="?controllers=widget&task=widgetSection" class="btn btn-outline-primary">Choisir des widgets</a>
+</div>
