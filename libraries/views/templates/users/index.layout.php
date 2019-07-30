@@ -13,11 +13,11 @@
 </div>
 
 <div class="container-fluid">
-    <div class="row-eq-height mb-3">
+    <div class="row-eq-height mb-3" id="draggable">
         <?php
         foreach ($data as $activeWidget):
             $resultCommand = $widgetData->doCommand($activeWidget->id);?>
-            <div class="col-md-3" id="<?= base64_encode($activeWidget->widget_name); ?>">
+            <div class="col-md-3">
                 <div class="card border-primary">
                     <div class="card-header"><h5> <?= $activeWidget->widget_name ?></h5></div>
                     <div class="card-body">
