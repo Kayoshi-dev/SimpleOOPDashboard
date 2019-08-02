@@ -100,11 +100,52 @@ abstract class Model
             $city = $meteoArray['city']['name'];
             $meteo = $meteoArray['list'][0]['weather'][0]['main'];
             $temp = $meteoArray['list'][0]['main']['temp'] - 273.15;
-            $data = ['Ville' => $city,
-                    'Meteo' => $meteo,
-                    'Temperature' => $temp
+            $data = [
+                'Ville' => $city,
+                'Meteo' => $meteo,
+                'Temperature' => $temp
             ];
             return 'Ville de : ' . $data['Ville'] . '<br>' . 'Il fait du : ' . $data['Meteo'] . '<br>' . 'Il fait : ' . $data['Temperature'] . ' degrés';
+        }
+
+        else if ($id == 5) {
+            return
+                '
+                <form action="" id="formLinkShtr" method="post">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="url" placeholder="Insérer un lien" aria-label="Recipient\'s username" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit" id="sendUrl">✔️</button>
+                        </div>
+                    </div>
+                </form>
+                <p>Votre lien raccourci : <span id="linkShtr"></span></p>
+                ';
+        } else if ($id == 6) {
+            if($_SERVER['REMOTE_ADDR'] == '::1') {
+                $ip = long2ip(rand(0, "4294967295"));
+            } else {
+                $ip = $_SERVER['REMOTE_ADDR'];
+            }
+            $locUrl = 'http://ip-api.com/json/' . $ip;
+            $locJson = file_get_contents($locUrl);
+            $locArray = json_decode($locJson, 'True');
+            if(isset($locArray['city']) && isset($locArray['regionName']) && isset($locArray['country'])) {
+                $city = $locArray['city'];
+                $regionName = $locArray['regionName'];
+                $pays = $locArray['country'];
+                $data = [
+                    'Ville' => $city,
+                    'Region' => $regionName,
+                    'Pays' => $pays
+                ];
+
+                return 'Localisation : ' . $data['Ville'] . '<br>'
+                    . 'dans la région de : ' . $data['Region'] . '<br>'
+                    . ' en ' . $data['Pays'];
+            } else {
+                return 'Erreur dans la génération de l\'IP';
+            }
         }
     }
 }

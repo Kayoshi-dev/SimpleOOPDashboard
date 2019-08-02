@@ -58,7 +58,7 @@ $(document).ready(function() {
     //     labelID = $(this).attr('for');
     //     $('#'+labelID).trigger('click');
     // });
-    
+
 	var draggable = $('#draggable').children(); //element
 
 	draggable.on('mousedown', function(e){
